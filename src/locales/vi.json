@@ -1,0 +1,9 @@
+{
+  "labels": {
+    "search": "Tìm kiếm"
+  },
+  "messages": {
+    "search_contact_placeholder": "Nhập tên hoặc số điện thoại",
+    "go_back_online": "Đã kết nối lại, trang sẽ tự động tải lại"
+  }
+}
