@@ -10,6 +10,14 @@ type Props = {
   contact: Contact;
 };
 
+function FavouriteIcon() {
+  return <Icon icon="ph:heart-fill" className="text-xl text-primary" />;
+}
+
+function UnFavouriteIcon() {
+  return <Icon icon="ph:heart" className="text-xl text-gray-400" />;
+}
+
 export default function ContactListItem({ contact }: Props) {
   const dispatch = useAppDispatch();
   const isFavorite = useAppSelector((state) =>
@@ -34,11 +42,7 @@ export default function ContactListItem({ contact }: Props) {
       </div>
 
       <button type="button" onClick={onToggleFavorite}>
-        {isFavorite ? (
-          <Icon icon="ph:heart-fill" className="text-xl text-primary" />
-        ) : (
-          <Icon icon="ph:heart" className="text-xl text-gray-400" />
-        )}
+        {isFavorite ? <FavouriteIcon /> : <UnFavouriteIcon />}
       </button>
     </div>
   );

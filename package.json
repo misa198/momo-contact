@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://misa198.github.com/momo-contact",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
