@@ -5,6 +5,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/hooks/redux.tsx';
 import { Contact } from '@/models/Contact.ts';
 import { Icon } from '@iconify/react';
+import { groupName } from '@/utils/string-utils.ts';
 
 type Props = {
   contact: Contact;
@@ -36,7 +37,7 @@ export default function ContactListItem({ contact }: Props) {
     <div className="w-full flex px-4 py-2 border-b last:border-b-0 items-center">
       <div className="flex-1">
         <h4 className="font-semibold mb-1">
-          {contact.last_name} {contact.first_name}
+          {groupName(contact.last_name, contact.first_name)}
         </h4>
         <p className="text-sm text-gray-600">{contact.phoneNumber}</p>
       </div>

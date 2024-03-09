@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# Momo Contact
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Go to [https://misa198.github.io/momo-contact/](https://misa198.github.io/momo-contact/) to see the application.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application is developed using ReactJS, with an interface similar to the image below.
 
-## Expanding the ESLint configuration
+![ui.png](docs%2Fui.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+It is a simple contact list application that allows:
 
-- Configure the top-level `parserOptions` property like this:
+- Fetching contacts from "https://www.mockachino.com/17acefab-0956-47/contacts'
+- Displaying the contacts in a list.
+- Searching for contacts by name or phone number, regardless of case, Vietnamese with or without accents.
+- Add or remove contacts from favourites list.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
+### Implement cache
+
+The application can be cached to increase performance but requires the api to provide "Headers" for control. Or the cache is implemented on the Server side. The current API does not return any headers, intentional caching may cause data to be out of date.
+
+### Offline mode
+
+The application can work offline. The application has been implemented as PWA. The latest response of the contact list API is saved for offline use. When the application switches from offline to online status, the application will be refreshed.
+
+### Loading state
+
+The application uses Redux's RTK to manage contact queries. It supports checking the loading status of each query.
+
+### Dealing with large data
+
+- If the data is not too large, it can all be returned to the client, and a "virtual list" can be implemented for the frontend.
+- If the data is too large:
+  - Search and pagination are implemented on the server side.
+  - Using server-side caching to improve performance.
+  - Using a search engine as Elastic Search to search for contacts.
+
+### Unit test
+
+N/A
+
+### Installation
+
+```bash
+$ yarn install
+$ yarn dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Libraries
+
+- ReactJS
+- Redux Toolkit
+- Tailwind CSS

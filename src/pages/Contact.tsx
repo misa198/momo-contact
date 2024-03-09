@@ -4,6 +4,7 @@ import { useListContactsQuery } from '@/features/contact/api.ts';
 import { Contact } from '@/models/Contact.ts';
 import {
   ALPHABET,
+  groupName,
   SPECIAL_KEY,
   toNonAccentVietnamese,
 } from '@/utils/string-utils.ts';
@@ -25,6 +26,10 @@ export default function ContactPage() {
     setSearch(e.target.value);
     searchDebounce(e.target.value.trim());
   };
+  const onClearSearch = () => {
+    setSearch('');
+    setFilterKeyword('');
+  };
 
   const filterContact = useCallback((contacts: Contact[], keyword: string) => {
     const contactsMap: ContactMap = new Map();
@@ -39,7 +44,7 @@ export default function ContactPage() {
       if (
         !keyword ||
         contact.phoneNumber.includes(lowerKeyword) ||
-        `${nonAccentLastName} ${nonAccentFirstName}`.includes(lowerKeyword)
+        groupName(nonAccentLastName, nonAccentFirstName).includes(lowerKeyword)
       ) {
         const firstChar = contact.last_name[0].toUpperCase();
         const indexChar =
@@ -71,9 +76,16 @@ export default function ContactPage() {
               value={search}
               onChange={onSearchChange}
               placeholder={t('messages.search_contact_placeholder')}
-              className="rounded-full h-full w-full pl-10 pr-4 outline-0 bg-white"
+              className="rounded-full h-full w-full px-10 outline-0 bg-white"
               disabled={isLoading}
             />
+            {search && (
+              <div className="flex items-center h-full absolute right-4 top-0">
+                <button type="button" onClick={onClearSearch}>
+                  <Icon icon="pajamas:clear" className="text-gray-400" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>

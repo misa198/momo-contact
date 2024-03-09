@@ -1,3 +1,4 @@
+import { getItem, setItem } from '@/utils/storage-utils.ts';
 import { createSlice } from '@reduxjs/toolkit';
 
 type FavouritePhoneNumbers = Record<string, boolean>;
@@ -9,15 +10,12 @@ type ContactState = {
 const FAVOURITE_PHONE_NUMBERS_STORAGE_KEY = 'favouritePhoneNumbers';
 
 const getFavouritePhoneNumbers = () =>
-  JSON.parse(localStorage.getItem(FAVOURITE_PHONE_NUMBERS_STORAGE_KEY) || '{}');
+  getItem(FAVOURITE_PHONE_NUMBERS_STORAGE_KEY) || {};
 
 const setFavouritePhoneNumbers = (
   favouritePhoneNumbers: FavouritePhoneNumbers,
 ) => {
-  localStorage.setItem(
-    FAVOURITE_PHONE_NUMBERS_STORAGE_KEY,
-    JSON.stringify(favouritePhoneNumbers),
-  );
+  setItem(FAVOURITE_PHONE_NUMBERS_STORAGE_KEY, favouritePhoneNumbers);
 };
 
 const initialState: ContactState = {

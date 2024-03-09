@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 export default function Offline() {
   const { t } = useTranslation();
@@ -23,9 +24,15 @@ export default function Offline() {
     };
   }, [changeStatus]);
 
-  if (status) return null;
   return (
-    <div className="fixed bottom-4 right-4 rounded-full border p-2 border-gray-400">
+    <div
+      className={clsx(
+        'fixed bottom-4 right-4 rounded-full border p-2 border-gray-400',
+        {
+          'opacity-0 pointer-events-none': status,
+        },
+      )}
+    >
       <Icon icon="tabler:wifi-off" className="text-gray-600 text-xl" />
     </div>
   );

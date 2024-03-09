@@ -1,10 +1,14 @@
 export const SPECIAL_KEY = '#';
 export const ALPHABET = [
   'A',
+  'Ă',
+  'Â',
   'B',
   'C',
   'D',
+  'Đ',
   'E',
+  'Ê',
   'F',
   'G',
   'H',
@@ -15,12 +19,15 @@ export const ALPHABET = [
   'M',
   'N',
   'O',
+  'Ô',
+  'Ơ',
   'P',
   'Q',
   'R',
   'S',
   'T',
   'U',
+  'Ư',
   'V',
   'W',
   'X',
@@ -49,4 +56,8 @@ export function toNonAccentVietnamese(str: string) {
   str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ''); // Huyền sắc hỏi ngã nặng
   str = str.replace(/\u02C6|\u0306|\u031B/g, ''); // Â, Ê, Ă, Ơ, Ư
   return str;
+}
+
+export function groupName(lastName: string, firstName: string) {
+  return `${lastName} ${firstName}`;
 }
